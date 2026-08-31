@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# novelai-ui
 
-## Getting Started
+NovelAI 生图前端界面，对应站点 [ai.bailan.shop](https://ai.bailan.shop)。
 
-First, run the development server:
+支持 NovelAI 官方格式、OpenAI 兼容格式，以及第三方图片生成接口。
+
+## 功能
+
+- 文生图、图生图
+- 多种 API 格式：NovelAI、OpenAI Chat Completions、第三方 Images API
+- 自定义模型、尺寸、采样器和提示词
+- 兼容上游返回 `text/plain` 的图片 JSON
+
+## 本地开发
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+浏览器打开 [http://localhost:3000](http://localhost:3000)。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+主要页面文件：`src/app/page.tsx`。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 生产构建
 
-## Learn More
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+也可以用 Docker 部署：
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+docker compose up -d --build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+默认映射端口为 `3002`。
 
-## Deploy on Vercel
+## 接口说明
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/api/generate`：NovelAI 官方格式
+- `/api/openai`：OpenAI Chat Completions 格式
+- `/api/thirdparty`：第三方文生图
+- `/api/thirdparty-edit`：第三方图生图
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+API 地址和密钥在页面中填写，不会写入仓库。
